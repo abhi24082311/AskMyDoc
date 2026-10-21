@@ -99,3 +99,8 @@ class VectorStore(ABC):
             Tuple of (texts, chunk_ids) lists in matching order.
         """
         ...
+
+    @abstractmethod
+    def get_all_chunks(self) -> list[SearchResult]:
+        """Return all stored chunks with metadata for lexical retrieval."""
+        ...

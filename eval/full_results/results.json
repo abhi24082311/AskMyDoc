@@ -1,0 +1,856 @@
+{
+  "generated_at": "2026-10-21T21:21:14.415027+00:00",
+  "dataset": "eval\\golden.jsonl",
+  "question_count": 10,
+  "ollama_model": "llama3.2",
+  "evaluator_model": "llama3.2",
+  "top_k": 4,
+  "modes": {
+    "vector_only": {
+      "metrics": {
+        "faithfulness": 0.62,
+        "answer_relevancy": 0.8598523321684516,
+        "context_precision": 0.8833333333054167,
+        "context_recall": 0.6166666666666667,
+        "recall_at_k": 1.0,
+        "mrr": 0.7666666666666667
+      },
+      "questions": [
+        {
+          "question": "What is the RAM-UR-IRA model?",
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "retrieved_sources": [
+            {
+              "source": "testfile.pdf",
+              "page": 9,
+              "chunk_id": "358952738626d159"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 9,
+              "chunk_id": "b3985db26c45819f"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 23,
+              "chunk_id": "0348c402b150f1c1"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 23,
+              "chunk_id": "075ff6fb799b261d"
+            }
+          ]
+        },
+        {
+          "question": "How is the attention parameter gamma defined in the RAM-UR-IRA model?",
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "retrieved_sources": [
+            {
+              "source": "testfile.pdf",
+              "page": 9,
+              "chunk_id": "358952738626d159"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 8,
+              "chunk_id": "f162e9810298d555"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 2,
+              "chunk_id": "a49da07002ea111f"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 11,
+              "chunk_id": "a5a955aac8d3a8d1"
+            }
+          ]
+        },
+        {
+          "question": "What distinguishes RAM-UR-IRA from the original IRA model?",
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "retrieved_sources": [
+            {
+              "source": "testfile.pdf",
+              "page": 9,
+              "chunk_id": "b3985db26c45819f"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 9,
+              "chunk_id": "358952738626d159"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 23,
+              "chunk_id": "0348c402b150f1c1"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 10,
+              "chunk_id": "d8f93fd1751abe79"
+            }
+          ]
+        },
+        {
+          "question": "What are the five axioms characterizing RAM-UR-IRA?",
+          "recall_at_k": 1.0,
+          "mrr": 0.3333333333333333,
+          "retrieved_sources": [
+            {
+              "source": "testfile.pdf",
+              "page": 9,
+              "chunk_id": "b3985db26c45819f"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 9,
+              "chunk_id": "358952738626d159"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 10,
+              "chunk_id": "d8f93fd1751abe79"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 23,
+              "chunk_id": "0348c402b150f1c1"
+            }
+          ]
+        },
+        {
+          "question": "What does the Regularity axiom state?",
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "retrieved_sources": [
+            {
+              "source": "testfile.pdf",
+              "page": 10,
+              "chunk_id": "d8f93fd1751abe79"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 16,
+              "chunk_id": "6e86dd00015ee418"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 18,
+              "chunk_id": "2a9e6f0ca5622065"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 23,
+              "chunk_id": "075ff6fb799b261d"
+            }
+          ]
+        },
+        {
+          "question": "Why does allowing gamma(x) = 1 matter in RAM-UR-IRA?",
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "retrieved_sources": [
+            {
+              "source": "testfile.pdf",
+              "page": 9,
+              "chunk_id": "b3985db26c45819f"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 16,
+              "chunk_id": "066f78bcd9b8dcea"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 23,
+              "chunk_id": "075ff6fb799b261d"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 9,
+              "chunk_id": "358952738626d159"
+            }
+          ]
+        },
+        {
+          "question": "How do RAM-UR and RAM-UR-IRA differ regarding the Regularity property?",
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "retrieved_sources": [
+            {
+              "source": "testfile.pdf",
+              "page": 10,
+              "chunk_id": "d8f93fd1751abe79"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 9,
+              "chunk_id": "b3985db26c45819f"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 9,
+              "chunk_id": "358952738626d159"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 23,
+              "chunk_id": "0348c402b150f1c1"
+            }
+          ]
+        },
+        {
+          "question": "Why is the representation uniqueness result important for RAM-UR-IRA?",
+          "recall_at_k": 1.0,
+          "mrr": 0.5,
+          "retrieved_sources": [
+            {
+              "source": "testfile.pdf",
+              "page": 9,
+              "chunk_id": "b3985db26c45819f"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 10,
+              "chunk_id": "d8f93fd1751abe79"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 9,
+              "chunk_id": "358952738626d159"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 23,
+              "chunk_id": "0348c402b150f1c1"
+            }
+          ]
+        },
+        {
+          "question": "What is the formula for choice probability in RAM-UR-IRA?",
+          "recall_at_k": 1.0,
+          "mrr": 0.5,
+          "retrieved_sources": [
+            {
+              "source": "testfile.pdf",
+              "page": 23,
+              "chunk_id": "0348c402b150f1c1"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 9,
+              "chunk_id": "b3985db26c45819f"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 9,
+              "chunk_id": "358952738626d159"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 8,
+              "chunk_id": "f162e9810298d555"
+            }
+          ]
+        },
+        {
+          "question": "What happens to the choice probability of an alternative when the menu expands under Regularity?",
+          "recall_at_k": 1.0,
+          "mrr": 0.3333333333333333,
+          "retrieved_sources": [
+            {
+              "source": "testfile.pdf",
+              "page": 6,
+              "chunk_id": "c6d31a0725cd6e03"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 6,
+              "chunk_id": "c3a0d5202165b454"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 10,
+              "chunk_id": "acff5d9529b27e10"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 18,
+              "chunk_id": "2a9e6f0ca5622065"
+            }
+          ]
+        }
+      ]
+    },
+    "hybrid": {
+      "metrics": {
+        "faithfulness": 0.85,
+        "answer_relevancy": 0.8877690143722446,
+        "context_precision": 0.8666666666408332,
+        "context_recall": 0.5833333333333333,
+        "recall_at_k": 1.0,
+        "mrr": 0.9333333333333333
+      },
+      "questions": [
+        {
+          "question": "What is the RAM-UR-IRA model?",
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "retrieved_sources": [
+            {
+              "source": "testfile.pdf",
+              "page": 9,
+              "chunk_id": "358952738626d159"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 23,
+              "chunk_id": "0348c402b150f1c1"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 11,
+              "chunk_id": "a5a955aac8d3a8d1"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 9,
+              "chunk_id": "b3985db26c45819f"
+            }
+          ]
+        },
+        {
+          "question": "How is the attention parameter gamma defined in the RAM-UR-IRA model?",
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "retrieved_sources": [
+            {
+              "source": "testfile.pdf",
+              "page": 9,
+              "chunk_id": "358952738626d159"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 11,
+              "chunk_id": "a5a955aac8d3a8d1"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 5,
+              "chunk_id": "c249a87c2f478d27"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 2,
+              "chunk_id": "a49da07002ea111f"
+            }
+          ]
+        },
+        {
+          "question": "What distinguishes RAM-UR-IRA from the original IRA model?",
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "retrieved_sources": [
+            {
+              "source": "testfile.pdf",
+              "page": 9,
+              "chunk_id": "358952738626d159"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 9,
+              "chunk_id": "b3985db26c45819f"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 23,
+              "chunk_id": "0348c402b150f1c1"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 3,
+              "chunk_id": "f627cb1ec0a5085f"
+            }
+          ]
+        },
+        {
+          "question": "What are the five axioms characterizing RAM-UR-IRA?",
+          "recall_at_k": 1.0,
+          "mrr": 0.3333333333333333,
+          "retrieved_sources": [
+            {
+              "source": "testfile.pdf",
+              "page": 9,
+              "chunk_id": "b3985db26c45819f"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 9,
+              "chunk_id": "358952738626d159"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 10,
+              "chunk_id": "d8f93fd1751abe79"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 3,
+              "chunk_id": "f627cb1ec0a5085f"
+            }
+          ]
+        },
+        {
+          "question": "What does the Regularity axiom state?",
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "retrieved_sources": [
+            {
+              "source": "testfile.pdf",
+              "page": 10,
+              "chunk_id": "d8f93fd1751abe79"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 16,
+              "chunk_id": "6e86dd00015ee418"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 10,
+              "chunk_id": "acff5d9529b27e10"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 9,
+              "chunk_id": "b3985db26c45819f"
+            }
+          ]
+        },
+        {
+          "question": "Why does allowing gamma(x) = 1 matter in RAM-UR-IRA?",
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "retrieved_sources": [
+            {
+              "source": "testfile.pdf",
+              "page": 9,
+              "chunk_id": "358952738626d159"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 9,
+              "chunk_id": "b3985db26c45819f"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 11,
+              "chunk_id": "a5a955aac8d3a8d1"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 23,
+              "chunk_id": "0348c402b150f1c1"
+            }
+          ]
+        },
+        {
+          "question": "How do RAM-UR and RAM-UR-IRA differ regarding the Regularity property?",
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "retrieved_sources": [
+            {
+              "source": "testfile.pdf",
+              "page": 10,
+              "chunk_id": "d8f93fd1751abe79"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 9,
+              "chunk_id": "358952738626d159"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 11,
+              "chunk_id": "a5a955aac8d3a8d1"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 23,
+              "chunk_id": "075ff6fb799b261d"
+            }
+          ]
+        },
+        {
+          "question": "Why is the representation uniqueness result important for RAM-UR-IRA?",
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "retrieved_sources": [
+            {
+              "source": "testfile.pdf",
+              "page": 10,
+              "chunk_id": "d8f93fd1751abe79"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 9,
+              "chunk_id": "b3985db26c45819f"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 23,
+              "chunk_id": "0348c402b150f1c1"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 11,
+              "chunk_id": "a5a955aac8d3a8d1"
+            }
+          ]
+        },
+        {
+          "question": "What is the formula for choice probability in RAM-UR-IRA?",
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "retrieved_sources": [
+            {
+              "source": "testfile.pdf",
+              "page": 9,
+              "chunk_id": "358952738626d159"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 23,
+              "chunk_id": "0348c402b150f1c1"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 10,
+              "chunk_id": "d8f93fd1751abe79"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 10,
+              "chunk_id": "acff5d9529b27e10"
+            }
+          ]
+        },
+        {
+          "question": "What happens to the choice probability of an alternative when the menu expands under Regularity?",
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "retrieved_sources": [
+            {
+              "source": "testfile.pdf",
+              "page": 10,
+              "chunk_id": "acff5d9529b27e10"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 6,
+              "chunk_id": "c6d31a0725cd6e03"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 2,
+              "chunk_id": "a49da07002ea111f"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 13,
+              "chunk_id": "0a1f2989a371e7c9"
+            }
+          ]
+        }
+      ]
+    },
+    "hybrid_rerank": {
+      "metrics": {
+        "faithfulness": 0.7150000000000001,
+        "answer_relevancy": 0.9306698748772313,
+        "context_precision": 0.9499999999691667,
+        "context_recall": 0.45666666666666667,
+        "recall_at_k": 0.9,
+        "mrr": 0.6666666666666667
+      },
+      "questions": [
+        {
+          "question": "What is the RAM-UR-IRA model?",
+          "recall_at_k": 1.0,
+          "mrr": 0.3333333333333333,
+          "retrieved_sources": [
+            {
+              "source": "testfile.pdf",
+              "page": 23,
+              "chunk_id": "075ff6fb799b261d"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 10,
+              "chunk_id": "d8f93fd1751abe79"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 9,
+              "chunk_id": "b3985db26c45819f"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 9,
+              "chunk_id": "358952738626d159"
+            }
+          ]
+        },
+        {
+          "question": "How is the attention parameter gamma defined in the RAM-UR-IRA model?",
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "retrieved_sources": [
+            {
+              "source": "testfile.pdf",
+              "page": 9,
+              "chunk_id": "358952738626d159"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 16,
+              "chunk_id": "066f78bcd9b8dcea"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 11,
+              "chunk_id": "a5a955aac8d3a8d1"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 8,
+              "chunk_id": "f162e9810298d555"
+            }
+          ]
+        },
+        {
+          "question": "What distinguishes RAM-UR-IRA from the original IRA model?",
+          "recall_at_k": 1.0,
+          "mrr": 0.3333333333333333,
+          "retrieved_sources": [
+            {
+              "source": "testfile.pdf",
+              "page": 23,
+              "chunk_id": "075ff6fb799b261d"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 10,
+              "chunk_id": "d8f93fd1751abe79"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 9,
+              "chunk_id": "b3985db26c45819f"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 11,
+              "chunk_id": "a5a955aac8d3a8d1"
+            }
+          ]
+        },
+        {
+          "question": "What are the five axioms characterizing RAM-UR-IRA?",
+          "recall_at_k": 1.0,
+          "mrr": 0.5,
+          "retrieved_sources": [
+            {
+              "source": "testfile.pdf",
+              "page": 9,
+              "chunk_id": "b3985db26c45819f"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 10,
+              "chunk_id": "d8f93fd1751abe79"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 6,
+              "chunk_id": "c3a0d5202165b454"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 9,
+              "chunk_id": "358952738626d159"
+            }
+          ]
+        },
+        {
+          "question": "What does the Regularity axiom state?",
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "retrieved_sources": [
+            {
+              "source": "testfile.pdf",
+              "page": 10,
+              "chunk_id": "d8f93fd1751abe79"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 10,
+              "chunk_id": "acff5d9529b27e10"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 11,
+              "chunk_id": "a5a955aac8d3a8d1"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 16,
+              "chunk_id": "6e86dd00015ee418"
+            }
+          ]
+        },
+        {
+          "question": "Why does allowing gamma(x) = 1 matter in RAM-UR-IRA?",
+          "recall_at_k": 1.0,
+          "mrr": 0.5,
+          "retrieved_sources": [
+            {
+              "source": "testfile.pdf",
+              "page": 16,
+              "chunk_id": "066f78bcd9b8dcea"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 9,
+              "chunk_id": "358952738626d159"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 8,
+              "chunk_id": "f162e9810298d555"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 23,
+              "chunk_id": "0348c402b150f1c1"
+            }
+          ]
+        },
+        {
+          "question": "How do RAM-UR and RAM-UR-IRA differ regarding the Regularity property?",
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "retrieved_sources": [
+            {
+              "source": "testfile.pdf",
+              "page": 10,
+              "chunk_id": "d8f93fd1751abe79"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 23,
+              "chunk_id": "075ff6fb799b261d"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 8,
+              "chunk_id": "f162e9810298d555"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 11,
+              "chunk_id": "a5a955aac8d3a8d1"
+            }
+          ]
+        },
+        {
+          "question": "Why is the representation uniqueness result important for RAM-UR-IRA?",
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "retrieved_sources": [
+            {
+              "source": "testfile.pdf",
+              "page": 10,
+              "chunk_id": "d8f93fd1751abe79"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 23,
+              "chunk_id": "075ff6fb799b261d"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 8,
+              "chunk_id": "f162e9810298d555"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 7,
+              "chunk_id": "2b78a3c686fe1a38"
+            }
+          ]
+        },
+        {
+          "question": "What is the formula for choice probability in RAM-UR-IRA?",
+          "recall_at_k": 0.0,
+          "mrr": 0.0,
+          "retrieved_sources": [
+            {
+              "source": "testfile.pdf",
+              "page": 10,
+              "chunk_id": "d8f93fd1751abe79"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 8,
+              "chunk_id": "f162e9810298d555"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 10,
+              "chunk_id": "acff5d9529b27e10"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 23,
+              "chunk_id": "0348c402b150f1c1"
+            }
+          ]
+        },
+        {
+          "question": "What happens to the choice probability of an alternative when the menu expands under Regularity?",
+          "recall_at_k": 1.0,
+          "mrr": 1.0,
+          "retrieved_sources": [
+            {
+              "source": "testfile.pdf",
+              "page": 10,
+              "chunk_id": "d8f93fd1751abe79"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 24,
+              "chunk_id": "491b579d695f5c78"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 10,
+              "chunk_id": "acff5d9529b27e10"
+            },
+            {
+              "source": "testfile.pdf",
+              "page": 13,
+              "chunk_id": "0a1f2989a371e7c9"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

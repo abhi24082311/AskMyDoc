@@ -77,9 +77,12 @@ class ChromaVectorStore(VectorStore):
         top_k: int,
     ) -> list[SearchResult]:
         """Query the collection for the nearest neighbours of query_embedding."""
+        collection_size = self._collection.count()
+        if collection_size == 0:
+            return []
         results = self._collection.query(
             query_embeddings=[query_embedding],
-            n_results=min(top_k, max(self._collection.count(), 1)),
+            n_results=min(top_k, collection_size),
             include=["documents", "metadatas", "distances"],
         )
 
@@ -112,7 +115,34 @@ class ChromaVectorStore(VectorStore):
 
     def get_all_texts_and_ids(self) -> tuple[list[str], list[str]]:
         """Retrieve all documents from the collection for BM25 index building."""
-        if self._collection.count() == 0:
-            return [], []
-        result = self._collection.get(include=["documents"])
-        return result.get("documents", []), result.get("ids", [])
+        chunks = self.get_all_chunks()
+        return [chunk.text for chunk in chunks], [chunk.chunk_id for chunk in chunks]
+
+    def get_all_chunks(self) -> list[SearchResult]:
+        """Retrieve every stored chunk and its metadata in bounded batches."""
+        total = self._collection.count()
+        chunks: list[SearchResult] = []
+        for offset in range(0, total, _BATCH_SIZE):
+            result = self._collection.get(
+                limit=min(_BATCH_SIZE, total - offset),
+                offset=offset,
+                include=["documents", "metadatas"],
+            )
+            for chunk_id, text, metadata in zip(
+                result.get("ids", []),
+                result.get("documents", []),
+                result.get("metadatas", []),
+            ):
+                metadata = metadata or {}
+                chunks.append(
+                    SearchResult(
+                        chunk_id=chunk_id,
+                        text=text or "",
+                        source=metadata.get("source", ""),
+                        page=int(metadata.get("page", 0)),
+                        section_heading=metadata.get("section_heading", ""),
+                        score=0.0,
+                        rank=0,
+                    )
+                )
+        return chunks

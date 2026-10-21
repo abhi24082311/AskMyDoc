@@ -53,7 +53,8 @@ class Citation(BaseModel):
 class LatencyBreakdown(BaseModel):
     """Per-stage pipeline latency in milliseconds."""
 
-    retrieve_ms: float = Field(description="Time spent on embedding + vector lookup.")
+    retrieve_ms: float = Field(description="Time spent embedding and retrieving/fusing candidate chunks.")
+    rerank_ms: float = Field(description="Time spent reranking retrieval candidates (0 when disabled).")
     generate_ms: float = Field(description="Time spent waiting for the LLM response.")
     total_ms: float = Field(description="Total wall-clock time for the /ask request.")
 

@@ -1,0 +1,85 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  test-and-evaluate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Cache local models
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/huggingface
+            ~/.ollama
+          key: ${{ runner.os }}-rag-models-${{ hashFiles('requirements.txt', '.env.example') }}
+
+      - name: Install Python dependencies
+        run: python -m pip install -r requirements.txt
+
+      - name: Run unit tests
+        run: python -m pytest tests/ -q
+
+      - name: Install and start local Ollama
+        run: |
+          curl -fsSL https://ollama.com/install.sh | sh
+          nohup ollama serve > /tmp/ollama.log 2>&1 &
+          for attempt in $(seq 1 30); do
+            if curl -fsS http://localhost:11434/api/tags > /dev/null; then break; fi
+            sleep 2
+          done
+          curl -fsS http://localhost:11434/api/tags > /dev/null
+          ollama pull llama3.2:1b
+
+      - name: Confirm evaluation document is present
+        run: test -f eval/ci_docs/ram_ur.md
+
+      - name: Ingest small CI fixture
+        env:
+          DOCS_DIR: eval/ci_docs
+          CHROMA_PERSIST_DIR: data/chroma_ci
+          CHROMA_COLLECTION_NAME: ask_my_docs_ci
+        run: python ingest_cli.py --docs-dir eval/ci_docs
+
+      - name: Run small all-modes evaluation
+        env:
+          OLLAMA_MODEL: llama3.2:1b
+          EVAL_OLLAMA_MODEL: llama3.2:1b
+          QUERY_CACHE_SIZE: "0"
+          CHROMA_PERSIST_DIR: data/chroma_ci
+          CHROMA_COLLECTION_NAME: ask_my_docs_ci
+          BM25_INDEX_DIR: data/bm25_ci
+        run: python -m eval.run --dataset eval/ci_golden.jsonl --output-dir eval/ci_results --limit 3
+
+      - name: Enforce quality gate
+        env:
+          OLLAMA_MODEL: llama3.2:1b
+          EVAL_OLLAMA_MODEL: llama3.2:1b
+          EVAL_RESULTS_DIR: eval/ci_results
+        run: python -m eval.quality_gate --results eval/ci_results/results.json
+
+      - name: Upload comparison report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: retrieval-evaluation
+          path: |
+            eval/results.json
+            eval/results.md
+            eval/ci_results/results.json
+            eval/ci_results/results.md
+          if-no-files-found: warn

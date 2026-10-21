@@ -17,6 +17,7 @@ from fastapi import Depends, FastAPI, HTTPException
 from fastapi.responses import JSONResponse
 
 from app.config import settings
+from app.query_cache import AskResponseCache
 from app.dependencies import (
     _init_services,
     get_chunker,
@@ -43,6 +44,10 @@ logging.basicConfig(
     format="%(asctime)s %(levelname)-8s %(name)s – %(message)s",
 )
 logger = logging.getLogger(__name__)
+_ask_cache = AskResponseCache(
+    max_size=settings.query_cache_size,
+    ttl_seconds=settings.query_cache_ttl_seconds,
+)
 
 
 @asynccontextmanager
@@ -102,6 +107,7 @@ def ingest(
     store=Depends(get_vector_store),
     embedder=Depends(get_embedding_model_dep),
     chunker=Depends(get_chunker),
+    search_svc=Depends(get_search_service),
 ):
     """Load all PDFs and Markdown files from the docs directory, chunk them,
     embed them, and upsert into the vector store.
@@ -124,6 +130,8 @@ def ingest(
             embedding_model=embedder,
             chunker=chunker,
         )
+        search_svc.refresh_bm25_index()
+        _ask_cache.clear()
     except Exception as exc:
         logger.exception("Ingestion failed: %s", exc)
         raise HTTPException(status_code=500, detail=f"Ingestion failed: {exc}") from exc
@@ -161,9 +169,30 @@ def ask(
     if not body.question.strip():
         raise HTTPException(status_code=422, detail="Question must not be empty.")
 
+    effective_top_k = body.top_k if body.top_k is not None else cfg.top_k
+    cache_key = (
+        " ".join(body.question.casefold().split()),
+        effective_top_k,
+        cfg.retrieval_mode,
+    )
+    cached = _ask_cache.get(cache_key)
+    if cached is not None:
+        total_ms = (time.perf_counter() - total_start) * 1000
+        logger.info("Ask response cache hit: total=%.1fms", total_ms)
+        return cached.model_copy(
+            update={
+                "latency": LatencyBreakdown(
+                    retrieve_ms=0.0,
+                    rerank_ms=0.0,
+                    generate_ms=0.0,
+                    total_ms=round(total_ms, 2),
+                )
+            }
+        )
+
     # ── Retrieve ──────────────────────────────────────────────────────────────
     try:
-        results, retrieve_ms = search_svc.search(
+        results, retrieve_ms, rerank_ms = search_svc.search(
             query=body.question,
             top_k=body.top_k,
         )
@@ -173,17 +202,20 @@ def ask(
 
     if not results:
         # No documents indexed yet or query out-of-distribution
-        return AskResponse(
+        response = AskResponse(
             answer="I don't know based on the provided documents.",
             citations=[],
             latency=LatencyBreakdown(
                 retrieve_ms=retrieve_ms,
+                rerank_ms=rerank_ms,
                 generate_ms=0.0,
                 total_ms=(time.perf_counter() - total_start) * 1000,
             ),
             retrieval_mode=cfg.retrieval_mode,
             chunks_retrieved=0,
         )
+        _ask_cache.put(cache_key, response)
+        return response
 
     # ── Generate ──────────────────────────────────────────────────────────────
     try:
@@ -212,23 +244,27 @@ def ask(
 
     total_ms = (time.perf_counter() - total_start) * 1000
     logger.info(
-        "ask: retrieve=%.1fms generate=%.1fms total=%.1fms",
+        "ask: retrieve=%.1fms rerank=%.1fms generate=%.1fms total=%.1fms",
         retrieve_ms,
+        rerank_ms,
         generate_ms,
         total_ms,
     )
 
-    return AskResponse(
+    response = AskResponse(
         answer=answer,
         citations=citations,
         latency=LatencyBreakdown(
             retrieve_ms=round(retrieve_ms, 2),
+            rerank_ms=round(rerank_ms, 2),
             generate_ms=round(generate_ms, 2),
             total_ms=round(total_ms, 2),
         ),
         retrieval_mode=cfg.retrieval_mode,
         chunks_retrieved=len(results),
     )
+    _ask_cache.put(cache_key, response)
+    return response
 
 
 if __name__ == "__main__":

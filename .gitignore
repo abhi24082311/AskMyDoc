@@ -32,6 +32,12 @@ ENV/
 # Data & Persistence
 data/chroma_db/
 data/bm25_index/
+data/chroma_ci/
+data/bm25_ci/
+eval/candidates.jsonl
+eval/smoke_results/
+eval/ci_results/
+ragas_import.log
 
 # Testing & Coverage
 .pytest_cache/

@@ -1,4 +1,4 @@
-.PHONY: install ingest serve test clean help
+.PHONY: install ingest serve eval eval-candidates test clean help
 
 PYTHON := .venv\Scripts\python.exe
 PIP    := .venv\Scripts\pip.exe
@@ -10,6 +10,8 @@ help:
 	@echo   make install    Install all dependencies
 	@echo   make ingest     Run document ingestion
 	@echo   make serve      Start the FastAPI server
+	@echo   make eval       Run the evaluation and quality gate
+	@echo   make eval-candidates Draft Q&A pairs from indexed documents
 	@echo   make test       Run all unit tests
 	@echo   make clean      Remove __pycache__ dirs
 	@echo.
@@ -22,6 +24,13 @@ ingest:
 
 serve:
 	$(PYTHON) -m app.main
+
+eval:
+	$(PYTHON) -m eval.run
+	$(PYTHON) -m eval.quality_gate
+
+eval-candidates:
+	$(PYTHON) -m eval.generate_candidates
 
 test:
 	$(PYTHON) -m pytest tests/ -v

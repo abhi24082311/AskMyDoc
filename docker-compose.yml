@@ -1,0 +1,34 @@
+services:
+  ollama:
+    image: ollama/ollama:latest
+    volumes:
+      - ollama_data:/root/.ollama
+    ports:
+      - "11434:11434"
+    healthcheck:
+      test: ["CMD", "ollama", "list"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+
+  app:
+    build: .
+    depends_on:
+      ollama:
+        condition: service_healthy
+    environment:
+      OLLAMA_BASE_URL: http://ollama:11434
+      DOCS_DIR: /app/data/docs
+      CHROMA_PERSIST_DIR: /app/data/chroma_db
+      BM25_INDEX_DIR: /app/data/bm25_index
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data/docs:/app/data/docs:ro
+      - chroma_data:/app/data/chroma_db
+      - bm25_data:/app/data/bm25_index
+
+volumes:
+  ollama_data:
+  chroma_data:
+  bm25_data:
